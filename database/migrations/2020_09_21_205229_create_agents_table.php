@@ -15,6 +15,13 @@ class CreateAgentsTable extends Migration
     {
         Schema::create('agents', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->bigInteger('broker_id')->unsigned();
+            $table->foreign('broker_id')->references('id')->on('brokers');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

@@ -4,8 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Agent extends Model
+class Agent extends Authenticatable
 {
     use HasFactory;
+
+    public function estates()
+    {
+        return $this->hasMany('App\Models\Estate');
+    }
+
+    public function clients()
+    {
+        return $this->hasMany('App\Models\Client');
+    }
+
+    public function Broker()
+    {
+        return $this->belongsTo('App\Models\Broker', 'broker_id');
+    }
 }

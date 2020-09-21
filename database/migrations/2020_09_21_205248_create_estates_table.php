@@ -15,6 +15,9 @@ class CreateEstatesTable extends Migration
     {
         Schema::create('estates', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->bigInteger('agent_id')->unsigned();
+            $table->foreign('agent_id')->references('id')->on('agents');
             $table->timestamps();
         });
     }

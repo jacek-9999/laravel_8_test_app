@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Estate extends Model
 {
     use HasFactory;
+
+    public function Agent()
+    {
+        return $this->belongsTo('App\Models\Agent', 'agent_id');
+    }
 }
