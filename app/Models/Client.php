@@ -10,6 +10,10 @@ class Client extends Authenticatable
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name', 'email', 'password', 'agent_id'
+    ];
+
     public function Agent()
     {
         return $this->belongsTo('App\Models\Agent', 'agent_id');

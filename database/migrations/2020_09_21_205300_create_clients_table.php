@@ -21,6 +21,7 @@ class CreateClientsTable extends Migration
             $table->string('password');
             $table->bigInteger('agent_id')->unsigned();
             $table->foreign('agent_id')->references('id')->on('agents');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

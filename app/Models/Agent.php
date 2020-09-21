@@ -10,6 +10,10 @@ class Agent extends Authenticatable
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name', 'email', 'password', 'broker_id'
+    ];
+
     public function estates()
     {
         return $this->hasMany('App\Models\Estate');

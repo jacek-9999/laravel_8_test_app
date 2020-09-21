@@ -9,6 +9,10 @@ class Broker extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name'
+    ];
+
     public function agents()
     {
         return $this->hasMany('App\Models\Agent');

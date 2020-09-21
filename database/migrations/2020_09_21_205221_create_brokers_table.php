@@ -15,6 +15,7 @@ class CreateBrokersTable extends Migration
     {
         Schema::create('brokers', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->timestamps();
         });
     }

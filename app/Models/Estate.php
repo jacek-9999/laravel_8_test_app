@@ -9,6 +9,10 @@ class Estate extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name', 'agent_id'
+    ];
+
     public function Agent()
     {
         return $this->belongsTo('App\Models\Agent', 'agent_id');
