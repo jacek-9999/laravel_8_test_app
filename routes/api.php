@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::middleware('auth:api')->get('/agents/{broker}', function (\App\Models\Broker $broker) {
+    return $broker->jsonSerialize()->except(['timestamp']);
+});
+Route::middleware('auth:api')->put('/agent/{agent_id}/assign/{broker_id}', function (Request $request) {
+    return $request->user();
+});
+Route::post('login', ['uses' => [AuthController::class, 'authenticate']])->name('auth.login');

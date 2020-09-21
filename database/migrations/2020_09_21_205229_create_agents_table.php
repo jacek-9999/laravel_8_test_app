@@ -19,7 +19,7 @@ class CreateAgentsTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->bigInteger('broker_id')->unsigned();
+            $table->bigInteger('broker_id')->unsigned()->nullable();
             $table->foreign('broker_id')->references('id')->on('brokers');
             $table->rememberToken();
             $table->timestamps();
