@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Support\Facades\DB;
 
 class Agent extends Authenticatable implements JWTSubject
 {
@@ -50,5 +51,22 @@ class Agent extends Authenticatable implements JWTSubject
     public function Broker()
     {
         return $this->belongsTo('App\Models\Broker', 'broker_id');
+    }
+
+    public function scopeWithoutEstates($query)
+    {
+        // this probably can be better with raw query
+        return $query->whereNotIn('id',
+            array_values(
+                array_unique(
+                    DB::table('estates')
+                        ->select('agent_id')
+                        ->get()
+                        ->map(function($el) {
+                            return $el->agent_id;
+                        })->toArray()
+                )
+            )
+        );
     }
 }
