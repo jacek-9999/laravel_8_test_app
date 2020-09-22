@@ -22,8 +22,11 @@ Route::middleware('auth:api')->get('/agents/{broker}', function (\App\Models\Bro
         return collect($item)->except(['created_at', 'updated_at', 'email_verified_at'])->toArray();
     });
 });
-Route::middleware('auth:api')->put('/agent/{agent_id}/assign/{broker_id}', function (Request $request) {
-    return $request->agent();
-});
+Route::middleware('auth:api')
+    ->put(
+        '/agent/{agent_id}/assign/{broker_id}',
+        ['uses' => '\App\Http\Controllers\AssignController@assignAgentToBroker']
+    );
+
 Route::post('login', ['uses' => '\App\Http\Controllers\AuthController@authenticate'])->name('auth.login');
 Route::post('logout', ['uses' => [AuthController::class, 'logout']]);
